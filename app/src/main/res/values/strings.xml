@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">CensusMap</string>
+
+    <!--Google Maps API Key -->
+    <string name="google_map_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBCdCe1dwN9MoO0iUOclw2FbjzM1Qob6zM</string>
 </resources>
