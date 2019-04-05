@@ -1,6 +1,17 @@
 <resources>
     <string name="app_name">CensusMap</string>
 
+    <!--UI values -->
+    <string name="info_button">GET DATA</string>
+    <!--ItemView Values -->
+
     <!--Google Maps API Key -->
     <string name="google_map_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBCdCe1dwN9MoO0iUOclw2FbjzM1Qob6zM</string>
+
+
+    <!-- Reverse Geocoding error handling messages -->
+    <string name="service_not_available">Service not available</string>
+    <string name="invalid_lat_long_used">Invalid latitude or longitude used</string>
+    <string name="no_address_found">No location data provided</string>
+    <string name="address_found">Address found!</string>
 </resources>

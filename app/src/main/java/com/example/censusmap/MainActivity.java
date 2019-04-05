@@ -1,38 +1,49 @@
 package com.example.censusmap;
 
 import android.content.pm.PackageManager;
-import android.location.Location;
-import android.support.annotation.NonNull;
+import android.location.Address;
+import android.location.Geocoder;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.Toast;
+import android.widget.Button;
 
+import com.example.censusmap.fragments.DataFragment;
+import com.example.censusmap.repositiory.DataPresenter;
+import com.example.censusmap.utilities.Constants;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.UiSettings;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 
-public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
-    public static final int REQUEST_LOCATION_PERMISSION = 123;
-    public static final String TAG = MainActivity.class.getSimpleName();
 
-    private GoogleMap map;
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
+
+    FusedLocationProviderClient flpClient;
+    GoogleMap map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         initialize();
+    }
+
+    private void setButton(String zipCode) {
+        Button displayButton = findViewById(R.id.info_button);
+        displayButton.setOnClickListener(v -> getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
+                .replace(R.id.main_activity_container, DataFragment.newInstance(zipCode))
+                .addToBackStack(null)
+                .commit());
     }
 
     private void initialize() {
@@ -46,13 +57,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
-        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-
-        LatLng nyc = new LatLng(40.7128, -74.0060);
-        googleMap.addMarker(new MarkerOptions().position(nyc).title("Marker in NYC"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(nyc));
-
-        setUISettings();
 
         if (ActivityCompat.checkSelfPermission(this,
                 android.Manifest.permission.ACCESS_FINE_LOCATION)
@@ -65,32 +69,26 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             ActivityCompat.requestPermissions(this,
                     new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION,
                             android.Manifest.permission.ACCESS_COARSE_LOCATION},
-                    MainActivity.REQUEST_LOCATION_PERMISSION);
+                    Constants.REQUEST_LOCATION_PERMISSION);
         } else {
             googleMap.setMyLocationEnabled(true);
-            final FusedLocationProviderClient flpClient = LocationServices.getFusedLocationProviderClient(this);
-            flpClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
-                @Override
-                public void onSuccess(Location location) {
-                    final String latLong = "Latitude: " + location.getLatitude() + " Longitude: " + location.getLongitude();
-                    Log.d(TAG, latLong);
-                    Toast.makeText(getApplicationContext(), latLong, Toast.LENGTH_SHORT).show();
+            flpClient = LocationServices.getFusedLocationProviderClient(this);
+            flpClient.getLastLocation().addOnSuccessListener(location -> {
+                Geocoder geocoder = new Geocoder(MainActivity.this, Locale.getDefault());
+                List<Address> addresses;
+                try {
+                    addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                    Address address = addresses.get(0);
+                    String zipCode = address.getPostalCode();
+                    setButton(zipCode);
+
+                    Log.d(Constants.TAG, address.getPostalCode());
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             });
-            flpClient.getLastLocation().addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.d(TAG, e.getMessage());
-                }
-            });
+            flpClient.getLastLocation().addOnFailureListener(e -> Log.d(Constants.TAG, e.getMessage()));
         }
     }
 
-    private void setUISettings() {
-        UiSettings uiSettings = map.getUiSettings();
-        uiSettings.setZoomControlsEnabled(true);
-        uiSettings.setCompassEnabled(true);
-        uiSettings.setMyLocationButtonEnabled(true);
-        uiSettings.setAllGesturesEnabled(true);
-    }
 }
