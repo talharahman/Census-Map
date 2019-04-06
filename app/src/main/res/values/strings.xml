@@ -3,15 +3,21 @@
 
     <!--UI values -->
     <string name="info_button">GET DATA</string>
+
     <!--ItemView Values -->
 
     <!--Google Maps API Key -->
     <string name="google_map_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBCdCe1dwN9MoO0iUOclw2FbjzM1Qob6zM</string>
 
+    <!--Developer's Info Values -->
+    <string name="developer_info_text">Developer Info</string>
+    <string name="e_mail">talharahman@pursuit.org</string>
+    <string name="github_repo">https://github.com/talharahman/Census-Map</string>
+    <string name="linkedin_profile">https://www.linkedin.com/in/talha-rahman-799516174/</string>
 
-    <!-- Reverse Geocoding error handling messages -->
-    <string name="service_not_available">Service not available</string>
-    <string name="invalid_lat_long_used">Invalid latitude or longitude used</string>
-    <string name="no_address_found">No location data provided</string>
-    <string name="address_found">Address found!</string>
+    <string-array name="developer_contact_text">
+        <item>E-mail</item>
+        <item>Github</item>
+        <item>LinkedIn</item>
+    </string-array>
 </resources>
