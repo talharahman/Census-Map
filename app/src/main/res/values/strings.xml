@@ -2,9 +2,7 @@
     <string name="app_name">CensusMap</string>
 
     <!--UI values -->
-    <string name="info_button">GET DATA</string>
-
-    <!--ItemView Values -->
+    <string name="details_button">GET CENSUS DATA</string>
 
     <!--Google Maps API Key -->
     <string name="google_map_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBCdCe1dwN9MoO0iUOclw2FbjzM1Qob6zM</string>
@@ -20,8 +18,5 @@
         <item>Github</item>
         <item>LinkedIn</item>
     </string-array>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

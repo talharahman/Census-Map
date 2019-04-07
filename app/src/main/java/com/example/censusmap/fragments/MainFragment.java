@@ -20,10 +20,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.censusmap.R;
-import com.example.censusmap.repositiory.FragmentInterface;
 import com.example.censusmap.utilities.Constants;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -76,7 +76,6 @@ public final class MainFragment extends Fragment
             mapView.onResume();
             mapView.getMapAsync(this);
         }
-
     }
 
     @Override
@@ -110,26 +109,14 @@ public final class MainFragment extends Fragment
         return devInfo.create();
     }
 
-
-    private void setButton(String zipCode) {
-        Button displayButton = rootView.findViewById(R.id.info_button);
-        displayButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.moveToDetailsScreen(zipCode);
-            }
-        });
+    private void setText(String zipCode) {
+        TextView displayText = rootView.findViewById(R.id.filter_text);
+        displayText.setText("Zip Code: " + zipCode);
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof FragmentInterface) {
-            listener = (FragmentInterface) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement interface");
-        }
+    private void setButton(String zipCode) {
+        Button displayButton = rootView.findViewById(R.id.details_button);
+        displayButton.setOnClickListener(v -> listener.moveToDetailsScreen(zipCode));
     }
 
     @Override
@@ -138,9 +125,10 @@ public final class MainFragment extends Fragment
         MapsInitializer.initialize(getContext());
         map = googleMap;
 
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(40.7128, -74.0060)).title("New York City Hall"));
+        LatLng defaultLoc = new LatLng(40.7128, -74.0060);
+        googleMap.addMarker(new MarkerOptions().position(defaultLoc).title("New York City Hall"));
         CameraPosition liberty = CameraPosition.builder()
-                .target(new LatLng(40.7128, -74.0060))
+                .target(defaultLoc)
                 .zoom(16)
                 .bearing(0)
                 .tilt(45)
@@ -166,6 +154,7 @@ public final class MainFragment extends Fragment
                     locationAddresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                     Address locationAddress = locationAddresses.get(0);
                     zipCode = locationAddress.getPostalCode();
+                    setText(zipCode);
                     setButton(zipCode);
 
                     Log.d(Constants.TAG, locationAddress.getPostalCode());
@@ -175,12 +164,6 @@ public final class MainFragment extends Fragment
             });
             flpClient.getLastLocation().addOnFailureListener(e -> Log.d(Constants.TAG, e.getMessage()));
         }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        listener = null;
     }
 
     @Override
@@ -195,16 +178,33 @@ public final class MainFragment extends Fragment
                         "Invalid location", Toast.LENGTH_SHORT).show();
             }
 
-            // listener.sendData(query)
             Address searchAddress = searchAddresses.get(0);
             LatLng latLng = new LatLng(searchAddress.getLatitude(), searchAddress.getLongitude());
             map.addMarker(new MarkerOptions().position(latLng).title(s));
-            map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+            map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
             zipCode = searchAddress.getPostalCode();
 
+            setText(zipCode);
             setButton(zipCode);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof FragmentInterface) {
+            listener = (FragmentInterface) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement interface");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        listener = null;
     }
 }

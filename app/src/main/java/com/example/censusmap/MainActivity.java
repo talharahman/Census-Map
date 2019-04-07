@@ -14,7 +14,8 @@ import android.view.MenuItem;
 import com.example.censusmap.fragments.DataFragment;
 import com.example.censusmap.fragments.MainFragment;
 import com.example.censusmap.fragments.OnBarQueryListener;
-import com.example.censusmap.repositiory.FragmentInterface;
+import com.example.censusmap.fragments.FragmentInterface;
+import com.example.censusmap.fragments.SplashFragment;
 
 public class MainActivity extends AppCompatActivity implements FragmentInterface {
 
@@ -26,6 +27,14 @@ public class MainActivity extends AppCompatActivity implements FragmentInterface
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.main_activity_container, SplashFragment.newInstance())
+                .commit();
+    }
+
+    @Override
+    public void moveToMainScreen() {
         MainFragment mainFragment = MainFragment.newInstance();
         barQueryListener = (OnBarQueryListener) mainFragment;
 
@@ -34,6 +43,10 @@ public class MainActivity extends AppCompatActivity implements FragmentInterface
                 .replace(R.id.main_activity_container, mainFragment)
                 .commit();
 
+        setToolBar();
+    }
+
+    private void setToolBar() {
         toolBar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolBar);
 
@@ -41,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements FragmentInterface
         actionBar.setHomeAsUpIndicator(R.drawable.ic_developer_info);
         setSearchView();
     }
-
 
     @Override
     public void moveToDetailsScreen(String zipCode) {

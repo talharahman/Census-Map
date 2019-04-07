@@ -4,24 +4,20 @@ package com.example.censusmap.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.censusmap.R;
-import com.example.censusmap.repositiory.FragmentInterface;
 
 
 public final class SplashFragment extends Fragment {
 
     private FragmentInterface listener;
-    public static final int TIMER_DURATION = 5000;
+    public static final int TIMER_DURATION = 3000;
     public static final int TIMER_INTERVAL = 1000;
 
     public SplashFragment() {}
@@ -40,7 +36,7 @@ public final class SplashFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof FragmentInterface) {
-          //  listener = (FragmentInterface) context;
+            listener = (FragmentInterface) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement interface");
@@ -56,7 +52,7 @@ public final class SplashFragment extends Fragment {
 
             @Override
             public void onFinish() {
-            //    listener.moveToMainScreen();
+                listener.moveToMainScreen();
             }
         };
         countDownTimer.start();
