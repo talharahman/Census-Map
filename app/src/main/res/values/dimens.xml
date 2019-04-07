@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dimen_reg">8dp</dimen>
+    <dimen name="card_padding">10dp</dimen>
+
+    <!-- Main Activity Dimensions -->
+    <dimen name="details_button">80dp</dimen>
+    <dimen name="main_map">500dp</dimen>
+
+    <dimen name="toolbar_height">50dp</dimen>
+
+</resources>

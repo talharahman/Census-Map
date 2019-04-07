@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">CensusMap</string>
+
+    <!--UI values -->
+    <string name="info_button">GET DATA</string>
+
+    <!--ItemView Values -->
+
+    <!--Google Maps API Key -->
+    <string name="google_map_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBCdCe1dwN9MoO0iUOclw2FbjzM1Qob6zM</string>
+
+    <!--Developer's Info Values -->
+    <string name="developer_info_text">Developer Info</string>
+    <string name="e_mail">talharahman@pursuit.org</string>
+    <string name="github_repo">https://github.com/talharahman/Census-Map</string>
+    <string name="linkedin_profile">https://www.linkedin.com/in/talha-rahman-799516174/</string>
+
+    <string-array name="developer_contact_text">
+        <item>E-mail</item>
+        <item>Github</item>
+        <item>LinkedIn</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
