@@ -1,22 +1,23 @@
 package com.example.censusmap;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
-import android.support.v4.app.ActivityCompat;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.support.v7.widget.SearchView;
+import android.widget.Toast;
+
 import com.example.censusmap.fragments.DataFragment;
 import com.example.censusmap.utilities.Constants;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -29,7 +30,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
-import java.net.URI;
 import java.util.List;
 import java.util.Locale;
 
@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     FusedLocationProviderClient flpClient;
     GoogleMap map;
-    SearchView searchView;
     String zipCode;
     android.support.v7.widget.Toolbar toolBar;
 
@@ -61,40 +60,32 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.developer_contact:
-             //   developerInfo().show();
+                developerInfo().show();
                 break;
         }
         return true;
     }
 
-   /* public AlertDialog developerInfo() {
-        AlertDialog.Builder devInfo = new AlertDialog.Builder(getApplicationContext());
+    public AlertDialog developerInfo() {
+        AlertDialog.Builder devInfo = new AlertDialog.Builder(MainActivity.this);
         devInfo.setTitle(R.string.developer_info_text)
-                .setItems(R.array.developer_contact_text, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which){
-                            case 0:
-                                Uri emailUri = Uri.parse(String.valueOf(R.string.e_mail));
-                                Intent emailIntent = new Intent(Intent.ACTION_VIEW, emailUri);
-                                startActivity(emailIntent);
-                                break;
-                            case 1:
-                                Uri githubUri = Uri.parse(String.valueOf(R.string.github_repo));
-                                Intent githubIntent = new Intent(Intent.ACTION_VIEW, githubUri);
-                                startActivity(githubIntent);
-                                break;
-                            case 2:
-                                Uri linkedinUri = Uri.parse(String.valueOf(R.string.linkedin_profile));
-                                Intent linkedinIntent = new Intent(Intent.ACTION_VIEW, linkedinUri);
-                                startActivity(linkedinIntent);
-                                break;
-                        }
+                .setItems(R.array.developer_contact_text, (dialog, which) -> {
+                    switch (which) {
+                        case 0:
+                            Uri emailUri = Uri.parse(String.valueOf(R.string.e_mail));
+                            Intent emailIntent = new Intent(Intent.ACTION_VIEW, emailUri);
+                            startActivity(emailIntent);
+                            break;
+                        case 1:
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(String.valueOf(R.string.github_repo))));
+                            break;
+                        case 2:
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(String.valueOf(R.string.linkedin_profile))));
+                            break;
                     }
                 });
         return devInfo.create();
-    }*/
-
+    }
 
     private void initialize() {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -113,16 +104,21 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void setSearchView() {
-        searchView = findViewById(R.id.map_search_view);
+        SearchView searchView = findViewById(R.id.map_search_view);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 String location = searchView.getQuery().toString();
-                List<Address> searchAddresses = null;
+                List<Address> searchAddresses;
                 Geocoder geocoder = new Geocoder(MainActivity.this, Locale.getDefault());
 
                 try {
                     searchAddresses = geocoder.getFromLocationName(location, 1);
+                    if (searchAddresses.isEmpty()) {
+                        Toast.makeText(MainActivity.this,
+                                "Invalid location", Toast.LENGTH_SHORT).show();
+                        return false;
+                    }
                     Address searchAddress = searchAddresses.get(0);
                     LatLng latLng = new LatLng(searchAddress.getLatitude(), searchAddress.getLongitude());
                     map.addMarker(new MarkerOptions().position(latLng).title(location));
@@ -140,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 return false;
             }
         });
+
     }
 
     @Override

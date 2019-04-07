@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00BCD4"
+    android:background="#673AB7"
     tools:context=".MainActivity">
 
     <include
@@ -51,7 +51,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimen_reg"
         android:layout_marginEnd="@dimen/dimen_reg"
-        android:background="#8BC34A"
         android:padding="10dp"
         app:cardCornerRadius="@dimen/dimen_reg"
         app:cardElevation="@dimen/dimen_reg"
@@ -64,7 +63,7 @@
             android:id="@+id/info_button"
             android:layout_width="match_parent"
             android:layout_height="@dimen/details_button"
-            android:background="#8BC34A"
+            android:background="#2196F3"
             android:gravity="center"
             android:text="@string/info_button"
             android:textSize="30sp" />
