@@ -40,7 +40,7 @@ public final class SplashFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof FragmentInterface) {
-            listener = (FragmentInterface) context;
+          //  listener = (FragmentInterface) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement interface");
@@ -56,7 +56,7 @@ public final class SplashFragment extends Fragment {
 
             @Override
             public void onFinish() {
-              //  listener.moveToMainScreen();
+            //    listener.moveToMainScreen();
             }
         };
         countDownTimer.start();
