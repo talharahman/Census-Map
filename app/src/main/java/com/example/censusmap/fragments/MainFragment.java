@@ -2,13 +2,10 @@ package com.example.censusmap.fragments;
 
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,7 +13,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -39,9 +35,10 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public final class MainFragment extends Fragment
-        implements OnMapReadyCallback, OnBarQueryListener {
+        implements OnMapReadyCallback, OnQuerySubmitListener {
 
     View rootView;
     FusedLocationProviderClient flpClient;
@@ -78,36 +75,6 @@ public final class MainFragment extends Fragment
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.developer_contact:
-                developerInfo().show();
-                break;
-        }
-        return true;
-    }
-
-    public AlertDialog developerInfo() {
-        AlertDialog.Builder devInfo = new AlertDialog.Builder(rootView.getContext());
-        devInfo.setTitle(R.string.developer_info_text)
-                .setItems(R.array.developer_contact_text, (dialog, which) -> {
-                    switch (which) {
-                        case 0:
-                            Uri emailUri = Uri.parse(String.valueOf(R.string.e_mail));
-                            Intent emailIntent = new Intent(Intent.ACTION_VIEW, emailUri);
-                            startActivity(emailIntent);
-                            break;
-                        case 1:
-                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(String.valueOf(R.string.github_repo))));
-                            break;
-                        case 2:
-                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(String.valueOf(R.string.linkedin_profile))));
-                            break;
-                    }
-                });
-        return devInfo.create();
-    }
 
     private void setText(String zipCode) {
         TextView displayText = rootView.findViewById(R.id.filter_text);
@@ -122,18 +89,19 @@ public final class MainFragment extends Fragment
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
-        MapsInitializer.initialize(getContext());
+        MapsInitializer.initialize(Objects.requireNonNull(getContext()));
         map = googleMap;
 
         LatLng defaultLoc = new LatLng(40.7128, -74.0060);
         googleMap.addMarker(new MarkerOptions().position(defaultLoc).title("New York City Hall"));
-        CameraPosition liberty = CameraPosition.builder()
+        CameraPosition NYChall = CameraPosition.builder()
                 .target(defaultLoc)
                 .zoom(16)
                 .bearing(0)
                 .tilt(45)
                 .build();
-        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(liberty));
+        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(NYChall));
+        setText(zipCode);
 
 
         if (ActivityCompat.checkSelfPermission(rootView.getContext(),
@@ -142,7 +110,9 @@ public final class MainFragment extends Fragment
                 ActivityCompat.checkSelfPermission(rootView.getContext(),
                         android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions((Activity) rootView.getContext(),
-                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, Constants.REQUEST_LOCATION_PERMISSION);
+                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION,
+                            android.Manifest.permission.ACCESS_COARSE_LOCATION},
+                    Constants.REQUEST_LOCATION_PERMISSION);
         } else {
             googleMap.setMyLocationEnabled(true);
             flpClient = LocationServices.getFusedLocationProviderClient((Activity) rootView.getContext());
@@ -167,7 +137,7 @@ public final class MainFragment extends Fragment
     }
 
     @Override
-    public void onQuery(String s) {
+    public void onQuerySubmit(String s) {
         List<Address> searchAddresses;
         Geocoder geocoder = new Geocoder(rootView.getContext(), Locale.getDefault());
 

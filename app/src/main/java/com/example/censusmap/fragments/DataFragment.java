@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 
 import com.example.censusmap.R;
 import com.example.censusmap.controller.DataAdapter;
@@ -19,14 +18,12 @@ import com.example.censusmap.utilities.Constants;
 
 import java.util.ArrayList;
 
-public class DataFragment extends Fragment {
+public final class DataFragment extends Fragment {
 
     public static final String PARAM_KEY = "zip";
-    String zipCode;
 
-    RecyclerView recyclerView;
+    String zipCode;
     View rootView;
-    DataPresenter presenter;
     DataAdapter adapter;
 
     public DataFragment() {}
@@ -61,13 +58,12 @@ public class DataFragment extends Fragment {
     }
 
     private void setData() {
-        presenter = new DataPresenter(this);
+        DataPresenter presenter = new DataPresenter(this);
         presenter.getData(zipCode);
     }
 
-
     private void initialize() {
-        recyclerView = rootView.findViewById(R.id.census_recyclerview);
+        RecyclerView recyclerView = rootView.findViewById(R.id.census_recyclerview);
         adapter = new DataAdapter(new ArrayList<>());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(

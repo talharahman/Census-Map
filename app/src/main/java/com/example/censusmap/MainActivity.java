@@ -13,20 +13,24 @@ import android.view.MenuItem;
 
 import com.example.censusmap.fragments.DataFragment;
 import com.example.censusmap.fragments.MainFragment;
-import com.example.censusmap.fragments.OnBarQueryListener;
+import com.example.censusmap.fragments.OnQuerySubmitListener;
 import com.example.censusmap.fragments.FragmentInterface;
+import com.example.censusmap.fragments.OnQueryTextChangeListener;
 import com.example.censusmap.fragments.SplashFragment;
 
 public class MainActivity extends AppCompatActivity implements FragmentInterface {
 
     android.support.v7.widget.Toolbar toolBar;
-    private OnBarQueryListener barQueryListener;
+    OnQuerySubmitListener barQueryListener;
+    OnQueryTextChangeListener barTextListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // getSupportActionBar().hide();
+        // befor enew fragment
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.main_activity_container, SplashFragment.newInstance())
@@ -36,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements FragmentInterface
     @Override
     public void moveToMainScreen() {
         MainFragment mainFragment = MainFragment.newInstance();
-        barQueryListener = (OnBarQueryListener) mainFragment;
+        barQueryListener = mainFragment;
 
         getSupportFragmentManager()
                 .beginTransaction()
@@ -89,15 +93,20 @@ public class MainActivity extends AppCompatActivity implements FragmentInterface
                 .setItems(R.array.developer_contact_text, (dialog, which) -> {
                     switch (which) {
                         case 0:
-                            Uri emailUri = Uri.parse(String.valueOf(R.string.e_mail));
-                            Intent emailIntent = new Intent(Intent.ACTION_VIEW, emailUri);
-                            startActivity(emailIntent);
+                            Intent myEmail = new Intent(Intent.ACTION_SEND);
+                            myEmail.setType("text/email");
+                            myEmail.putExtra(Intent.EXTRA_EMAIL,
+                                    new String[]{"talharahman@pursuit.org"});
+                            myEmail.putExtra(Intent.EXTRA_SUBJECT,
+                                    "Hello Talha");
+                            myEmail.putExtra(Intent.EXTRA_TEXT, "Dear Talha," + "");
+                            startActivity(Intent.createChooser(myEmail, "Send Message:"));
                             break;
                         case 1:
-                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(String.valueOf(R.string.github_repo))));
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/talharahman/Census-Map")));
                             break;
                         case 2:
-                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(String.valueOf(R.string.linkedin_profile))));
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.linkedin.com/in/talha-rahman-799516174/")));
                             break;
                     }
                 });
@@ -109,12 +118,13 @@ public class MainActivity extends AppCompatActivity implements FragmentInterface
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                barQueryListener.onQuery(query);
+                barQueryListener.onQuerySubmit(query);
                 return false;
             }
 
             @Override
-            public boolean onQueryTextChange(String s) {
+            public boolean onQueryTextChange(String filter) {
+                //  barTextListener.onQueryChange(filter);
                 return false;
             }
         });

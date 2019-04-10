@@ -2,11 +2,13 @@ package com.example.censusmap.controller;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.example.censusmap.R;
 import com.example.censusmap.model.CensusModel;
+import com.example.censusmap.utilities.Constants;
 import com.example.censusmap.view.DataViewHolder;
 
 import java.util.List;
@@ -24,7 +26,8 @@ public class DataAdapter extends RecyclerView.Adapter<DataViewHolder> {
     public DataViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         return new DataViewHolder(
                 LayoutInflater.from(
-                        viewGroup.getContext()).inflate(R.layout.data_itemview, viewGroup, false));
+                        viewGroup.getContext())
+                        .inflate(R.layout.data_itemview, viewGroup, false));
     }
 
     @Override
@@ -39,6 +42,11 @@ public class DataAdapter extends RecyclerView.Adapter<DataViewHolder> {
 
     public void passModel(CensusModel model) {
         modelList.add(model);
+        notifyDataSetChanged();
+    }
+
+    public void setData(List<CensusModel> newCensusList) {
+        this.modelList = newCensusList;
         notifyDataSetChanged();
     }
 }

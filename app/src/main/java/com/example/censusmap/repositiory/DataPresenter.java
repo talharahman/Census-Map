@@ -1,8 +1,15 @@
 package com.example.censusmap.repositiory;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 
 import com.example.censusmap.fragments.DataFragment;
+import com.example.censusmap.fragments.OnQueryTextChangeListener;
+import com.example.censusmap.model.CensusModel;
+import com.example.censusmap.utilities.Constants;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
@@ -20,7 +27,7 @@ public class DataPresenter {
         repository.networkCall(zipCode)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(censusModel -> fragment.updateUI(censusModel),
-                        t -> t.getMessage());
+                        throwable -> Log.d(Constants.TAG, "onFailure: " + throwable));
     }
 
 }

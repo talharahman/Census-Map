@@ -17,8 +17,7 @@
             android:layout_width="330dp"
             android:layout_height="match_parent"
             android:focusable="true"
-            android:iconifiedByDefault="false"
-            app:queryHint="search location">
+            android:iconifiedByDefault="false">
 
         </android.support.v7.widget.SearchView>
 
