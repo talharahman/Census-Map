@@ -18,20 +18,19 @@
         <item>LinkedIn</item>
     </string-array>
 
-
     <!--RecyclerView Data Items-->
     <string name="Data_Not_Available">Data Not Available</string>
     <string name="Total_Population">Total Population</string>
-    <string name="Foreign_Born">Foreign Born</string>
+    <string name="Foreign_Born">Foreign Born Population</string>
     <string name="Age_Under_18">Households Age Under 18</string>
     <string name="Age_Over_65">Households Age Over 65</string>
     <string name="Employed_Service">Employed: Service</string>
     <string name="Employed_Sales_Office">Employed: Sales &amp; Office</string>
     <string name="Employed_Construction">Employed: Construction</string>
-    <string name="Employed_Public_Administration">Employed: Public Admin</string>
-    <string name="Employed_Healthcare_Education_Social">Healthcare, Education, Social</string>
-    <string name="Finance_RealEstate">Finance and Real Estate</string>
-    <string name="Transportation_Utilities">Transportation and Utilities</string>
+    <string name="Employed_Public_Administration">Employed: Public Administration</string>
+    <string name="Employed_Healthcare_Education_Social">Employed: Health Care, Education &amp; Social Services</string>
+    <string name="Finance_RealEstate">Employed: Finance &amp; Real Estate</string>
+    <string name="Transportation_Utilities">Employed: Transportation &amp; Utilities</string>
 
 
 </resources>

@@ -29,8 +29,6 @@ public class MainActivity extends AppCompatActivity implements FragmentInterface
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // getSupportActionBar().hide();
-        // befor enew fragment
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.main_activity_container, SplashFragment.newInstance())

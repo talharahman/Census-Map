@@ -4,7 +4,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -17,12 +16,13 @@
          app:cardCornerRadius="@dimen/dimen_reg"
          app:cardElevation="@dimen/dimen_reg"
          android:padding="10dp"
-         android:layout_margin="@dimen/dimen_reg">
+         android:layout_margin="@dimen/dimen_reg"
+         >
 
          <TextView
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:textSize="30sp"
+             android:textSize="@dimen/itemview_textsize"
              android:layout_marginTop="0dp"
              android:gravity="center"
              android:text="@string/Total_Population"
@@ -32,9 +32,9 @@
              android:id="@+id/population_total"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:textSize="30sp"
+             android:textSize="@dimen/itemview_textsize"
              android:gravity="center"
-             android:layout_marginTop="40dp"
+             android:layout_marginTop="@dimen/data_itemview_small_field"
              android:text="@string/Data_Not_Available"
              android:background="#3F51B5"/>
      </android.support.v7.widget.CardView>
@@ -54,7 +54,7 @@
          <TextView
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:textSize="30sp"
+             android:textSize="@dimen/itemview_textsize"
              android:layout_marginTop="0dp"
              android:gravity="center"
              android:text="@string/Foreign_Born"
@@ -64,9 +64,9 @@
              android:id="@+id/foreign_born"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:textSize="30sp"
+             android:textSize="@dimen/itemview_textsize"
              android:gravity="center"
-             android:layout_marginTop="40dp"
+             android:layout_marginTop="@dimen/data_itemview_small_field"
              android:text="@string/Data_Not_Available"
              android:background="#3F51B5"/>
      </android.support.v7.widget.CardView>
@@ -86,7 +86,7 @@
          <TextView
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:textSize="30sp"
+             android:textSize="@dimen/itemview_textsize"
              android:layout_marginTop="0dp"
              android:gravity="center"
              android:text="@string/Age_Under_18"
@@ -96,9 +96,9 @@
              android:id="@+id/age_under_18"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:textSize="30sp"
+             android:textSize="@dimen/itemview_textsize"
              android:gravity="center"
-             android:layout_marginTop="40dp"
+             android:layout_marginTop="@dimen/data_itemview_small_field"
              android:text="@string/Data_Not_Available"
              android:background="#3F51B5"/>
      </android.support.v7.widget.CardView>
@@ -118,7 +118,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="@dimen/itemview_textsize"
             android:layout_marginTop="0dp"
             android:gravity="center"
             android:text="@string/Age_Over_65"
@@ -128,9 +128,9 @@
             android:id="@+id/age_over_65"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="@dimen/itemview_textsize"
             android:gravity="center"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="@dimen/data_itemview_small_field"
             android:text="@string/Data_Not_Available"
             android:background="#3F51B5"/>
     </android.support.v7.widget.CardView>
@@ -150,7 +150,7 @@
          <TextView
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:textSize="30sp"
+             android:textSize="@dimen/itemview_textsize"
              android:layout_marginTop="0dp"
              android:gravity="center"
              android:text="@string/Employed_Service"
@@ -160,9 +160,9 @@
              android:id="@+id/employed_service"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:textSize="30sp"
+             android:textSize="@dimen/itemview_textsize"
              android:gravity="center"
-             android:layout_marginTop="40dp"
+             android:layout_marginTop="@dimen/data_itemview_small_field"
              android:text="@string/Data_Not_Available"
              android:background="#3F51B5"/>
      </android.support.v7.widget.CardView>
@@ -181,7 +181,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="@dimen/itemview_textsize"
             android:layout_marginTop="0dp"
             android:gravity="center"
             android:text="@string/Employed_Sales_Office"
@@ -191,9 +191,9 @@
             android:id="@+id/employed_sales_office"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="@dimen/itemview_textsize"
             android:gravity="center"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="@dimen/data_itemview_small_field"
             android:text="@string/Data_Not_Available"
             android:background="#3F51B5"/>
     </android.support.v7.widget.CardView>
@@ -213,7 +213,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="@dimen/itemview_textsize"
             android:layout_marginTop="0dp"
             android:gravity="center"
             android:text="@string/Employed_Construction"
@@ -223,9 +223,9 @@
             android:id="@+id/employed_construction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="@dimen/itemview_textsize"
             android:gravity="center"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="@dimen/data_itemview_small_field"
             android:text="@string/Data_Not_Available"
             android:background="#3F51B5"/>
     </android.support.v7.widget.CardView>
@@ -245,7 +245,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="@dimen/itemview_textsize"
             android:layout_marginTop="0dp"
             android:gravity="center"
             android:text="@string/Employed_Public_Administration"
@@ -255,9 +255,9 @@
             android:id="@+id/public_administration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="@dimen/itemview_textsize"
             android:gravity="center"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="@dimen/data_itemview_large_field"
             android:text="@string/Data_Not_Available"
             android:background="#3F51B5"/>
     </android.support.v7.widget.CardView>
@@ -277,7 +277,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="@dimen/itemview_textsize"
             android:layout_marginTop="0dp"
             android:gravity="center"
             android:text="@string/Employed_Healthcare_Education_Social"
@@ -287,9 +287,9 @@
             android:id="@+id/education_healthcare_social"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="@dimen/itemview_textsize"
             android:gravity="center"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="@dimen/data_itemview_large_field"
             android:text="@string/Data_Not_Available"
             android:background="#3F51B5"/>
     </android.support.v7.widget.CardView>
@@ -309,7 +309,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="@dimen/itemview_textsize"
             android:layout_marginTop="0dp"
             android:gravity="center"
             android:text="@string/Finance_RealEstate"
@@ -319,9 +319,9 @@
             android:id="@+id/finance_realEstate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="@dimen/itemview_textsize"
             android:gravity="center"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="@dimen/data_itemview_large_field"
             android:text="@string/Data_Not_Available"
             android:background="#3F51B5"/>
     </android.support.v7.widget.CardView>
@@ -341,7 +341,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="@dimen/itemview_textsize"
             android:layout_marginTop="0dp"
             android:gravity="center"
             android:text="@string/Transportation_Utilities"
@@ -351,9 +351,9 @@
             android:id="@+id/transportation_utilities"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="@dimen/itemview_textsize"
             android:gravity="center"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="@dimen/data_itemview_large_field"
             android:text="@string/Data_Not_Available"
             android:background="#3F51B5"/>
     </android.support.v7.widget.CardView>
