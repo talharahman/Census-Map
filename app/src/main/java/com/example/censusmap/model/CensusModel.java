@@ -14,7 +14,17 @@ public class CensusModel {
     private String financeRealEstate;
     private String transportationUtilities;
 
-    public CensusModel(String totalPopulation, String foreignBorn, String ageUnder18, String ageOver65, String employedService, String employedSalesOffice, String employedConstruction, String publicAdministration, String educationHealthCareSocial, String financeRealEstate, String transportationUtilities) {
+    public CensusModel(String totalPopulation,
+                       String foreignBorn,
+                       String ageUnder18,
+                       String ageOver65,
+                       String employedService,
+                       String employedSalesOffice,
+                       String employedConstruction,
+                       String publicAdministration,
+                       String educationHealthCareSocial,
+                       String financeRealEstate,
+                       String transportationUtilities) {
         this.totalPopulation = totalPopulation;
         this.foreignBorn = foreignBorn;
         this.ageUnder18 = ageUnder18;
@@ -47,6 +57,7 @@ public class CensusModel {
     public String getEmployedService() {
         return employedService;
     }
+
     public String getEmployedSalesOffice() {
         return employedSalesOffice;
     }

@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,9 @@ import com.example.censusmap.R;
 import com.example.censusmap.utilities.Constants;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.places.GeoDataClient;
+import com.google.android.gms.location.places.PlaceDetectionClient;
+import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -67,6 +71,8 @@ public final class MainFragment extends Fragment
         super.onViewCreated(view, savedInstanceState);
         setHasOptionsMenu(true);
 
+        flpClient = LocationServices.getFusedLocationProviderClient((Activity) rootView.getContext());
+
         mapView = rootView.findViewById(R.id.main_map);
         if (mapView != null) {
             mapView.onCreate(null);
@@ -89,7 +95,7 @@ public final class MainFragment extends Fragment
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
-        MapsInitializer.initialize(Objects.requireNonNull(getContext()));
+        MapsInitializer.initialize(rootView.getContext());
         map = googleMap;
 
         LatLng defaultLoc = new LatLng(40.7128, -74.0060);
@@ -115,7 +121,6 @@ public final class MainFragment extends Fragment
                     Constants.REQUEST_LOCATION_PERMISSION);
         } else {
             googleMap.setMyLocationEnabled(true);
-            flpClient = LocationServices.getFusedLocationProviderClient((Activity) rootView.getContext());
             flpClient.getLastLocation().addOnSuccessListener(location -> {
                 Geocoder geocoder = new Geocoder(rootView.getContext(), Locale.getDefault());
                 List<Address> locationAddresses;
