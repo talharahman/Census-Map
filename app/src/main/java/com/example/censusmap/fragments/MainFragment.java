@@ -102,7 +102,6 @@ public final class MainFragment extends Fragment
                 .tilt(45)
                 .build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(NYChall));
-        setText(zipCode);
 
 
         if (ActivityCompat.checkSelfPermission(rootView.getContext(),

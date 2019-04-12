@@ -17,7 +17,7 @@ import com.example.censusmap.R;
 public final class SplashFragment extends Fragment {
 
     private FragmentInterface listener;
-    public static final int TIMER_DURATION = 3000;
+    public static final int TIMER_DURATION = 1000;
     public static final int TIMER_INTERVAL = 1000;
 
     public SplashFragment() {}

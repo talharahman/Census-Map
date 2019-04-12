@@ -36,7 +36,6 @@
         android:textStyle="bold"
         android:background="#2196F3"
         android:gravity="center"
-        android:text="ZIP CODE: 10472"
         android:alpha="0.75"
         app:layout_constraintBottom_toTopOf="@+id/details_button"
         app:layout_constraintEnd_toEndOf="parent"
