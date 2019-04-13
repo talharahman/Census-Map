@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 
 import com.example.censusmap.R;
 import com.example.censusmap.controller.DataAdapter;
@@ -18,16 +17,19 @@ import com.example.censusmap.repositiory.DataPresenter;
 import com.example.censusmap.utilities.Constants;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-public class DataFragment extends Fragment {
+public final class DataFragment extends Fragment implements OnQueryTextChangeListener {
 
     public static final String PARAM_KEY = "zip";
-    String zipCode;
 
-    RecyclerView recyclerView;
-    View rootView;
-    DataPresenter presenter;
-    DataAdapter adapter;
+
+    private String zipCode;
+    private View rootView;
+    private DataAdapter adapter;
+    private List<CensusModel> censusModels;
+
 
     public DataFragment() {}
 
@@ -61,13 +63,12 @@ public class DataFragment extends Fragment {
     }
 
     private void setData() {
-        presenter = new DataPresenter(this);
+        DataPresenter presenter = new DataPresenter(this);
         presenter.getData(zipCode);
     }
 
-
     private void initialize() {
-        recyclerView = rootView.findViewById(R.id.census_recyclerview);
+        RecyclerView recyclerView = rootView.findViewById(R.id.census_recyclerview);
         adapter = new DataAdapter(new ArrayList<>());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(
@@ -80,4 +81,15 @@ public class DataFragment extends Fragment {
         adapter.passModel(model);
     }
 
+    @Override
+    public void onQueryChange(String filter) {
+        final List<CensusModel> newCensusModels = new ArrayList<>();
+        censusModels = adapter.getDataList();
+        for (CensusModel censusModel : censusModels) {
+            if (Arrays.toString(censusModel.getClass().getDeclaredFields()).toLowerCase().startsWith(filter.toLowerCase())) {
+                newCensusModels.add(censusModel);
+            }
+        }
+            adapter.setData(newCensusModels);
+    }
 }

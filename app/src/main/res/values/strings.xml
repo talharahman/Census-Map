@@ -1,10 +1,9 @@
 <resources>
     <string name="app_name">CensusMap</string>
+    <string name="app_title">Census Map</string>
 
     <!--UI values -->
-    <string name="info_button">GET DATA</string>
-
-    <!--ItemView Values -->
+    <string name="details_button">GET CENSUS DATA</string>
 
     <!--Google Maps API Key -->
     <string name="google_map_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBCdCe1dwN9MoO0iUOclw2FbjzM1Qob6zM</string>
@@ -12,8 +11,6 @@
     <!--Developer's Info Values -->
     <string name="developer_info_text">Developer Info</string>
     <string name="e_mail">talharahman@pursuit.org</string>
-    <string name="github_repo">https://github.com/talharahman/Census-Map</string>
-    <string name="linkedin_profile">https://www.linkedin.com/in/talha-rahman-799516174/</string>
 
     <string-array name="developer_contact_text">
         <item>E-mail</item>
@@ -21,7 +18,19 @@
         <item>LinkedIn</item>
     </string-array>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--RecyclerView Data Items-->
+    <string name="Data_Not_Available">Data Not Available</string>
+    <string name="Total_Population">Total Population</string>
+    <string name="Foreign_Born">Foreign Born Population</string>
+    <string name="Age_Under_18">Households Age Under 18</string>
+    <string name="Age_Over_65">Households Age Over 65</string>
+    <string name="Employed_Service">Employed: Service</string>
+    <string name="Employed_Sales_Office">Employed: Sales &amp; Office</string>
+    <string name="Employed_Construction">Employed: Construction</string>
+    <string name="Employed_Public_Administration">Employed: Public Administration</string>
+    <string name="Employed_Healthcare_Education_Social">Employed: Health Care, Education &amp; Social Services</string>
+    <string name="Finance_RealEstate">Employed: Finance &amp; Real Estate</string>
+    <string name="Transportation_Utilities">Employed: Transportation &amp; Utilities</string>
+
 
 </resources>

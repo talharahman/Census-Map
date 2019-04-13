@@ -13,10 +13,14 @@ import java.util.List;
 
 public class DataAdapter extends RecyclerView.Adapter<DataViewHolder> {
 
-    private List<CensusModel> modelList;
+    private List<CensusModel> dataList;
 
-    public DataAdapter(List<CensusModel> modelList) {
-        this.modelList = modelList;
+    public DataAdapter(List<CensusModel> dataList) {
+        this.dataList = dataList;
+    }
+
+    public List<CensusModel> getDataList() {
+        return dataList;
     }
 
     @NonNull
@@ -24,21 +28,27 @@ public class DataAdapter extends RecyclerView.Adapter<DataViewHolder> {
     public DataViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         return new DataViewHolder(
                 LayoutInflater.from(
-                        viewGroup.getContext()).inflate(R.layout.data_itemview, viewGroup, false));
+                        viewGroup.getContext())
+                        .inflate(R.layout.data_itemview, viewGroup, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull DataViewHolder dataViewHolder, int i) {
-        dataViewHolder.onBind(modelList.get(i));
+        dataViewHolder.onBind(dataList.get(i));
     }
 
     @Override
     public int getItemCount() {
-        return modelList.size();
+        return dataList.size();
     }
 
     public void passModel(CensusModel model) {
-        modelList.add(model);
+        dataList.add(model);
+        notifyDataSetChanged();
+    }
+
+    public void setData(List<CensusModel> newCensusList) {
+        this.dataList = newCensusList;
         notifyDataSetChanged();
     }
 }

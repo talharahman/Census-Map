@@ -8,5 +8,9 @@
     <dimen name="main_map">500dp</dimen>
 
     <dimen name="toolbar_height">50dp</dimen>
+    <dimen name="itemview_textsize">30sp</dimen>
+
+    <dimen name="data_itemview_small_field">40dp</dimen>
+    <dimen name="data_itemview_large_field">75dp</dimen>
 
 </resources>
