@@ -46,9 +46,4 @@ public class DataAdapter extends RecyclerView.Adapter<DataViewHolder> {
         dataList.add(model);
         notifyDataSetChanged();
     }
-
-    public void setData(List<CensusModel> newCensusList) {
-        this.dataList = newCensusList;
-        notifyDataSetChanged();
-    }
 }
