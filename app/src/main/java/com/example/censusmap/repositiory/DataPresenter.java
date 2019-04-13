@@ -4,12 +4,7 @@ import android.annotation.SuppressLint;
 import android.util.Log;
 
 import com.example.censusmap.fragments.DataFragment;
-import com.example.censusmap.fragments.OnQueryTextChangeListener;
-import com.example.censusmap.model.CensusModel;
 import com.example.censusmap.utilities.Constants;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 

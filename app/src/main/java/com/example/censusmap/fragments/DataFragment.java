@@ -17,19 +17,15 @@ import com.example.censusmap.repositiory.DataPresenter;
 import com.example.censusmap.utilities.Constants;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public final class DataFragment extends Fragment implements OnQueryTextChangeListener {
+public final class DataFragment extends Fragment {
 
     public static final String PARAM_KEY = "zip";
-
 
     private String zipCode;
     private View rootView;
     private DataAdapter adapter;
-    private List<CensusModel> censusModels;
-
 
     public DataFragment() {}
 
@@ -79,17 +75,5 @@ public final class DataFragment extends Fragment implements OnQueryTextChangeLis
 
     public void updateUI(CensusModel model){
         adapter.passModel(model);
-    }
-
-    @Override
-    public void onQueryChange(String filter) {
-        final List<CensusModel> newCensusModels = new ArrayList<>();
-        censusModels = adapter.getDataList();
-        for (CensusModel censusModel : censusModels) {
-            if (Arrays.toString(censusModel.getClass().getDeclaredFields()).toLowerCase().startsWith(filter.toLowerCase())) {
-                newCensusModels.add(censusModel);
-            }
-        }
-            adapter.setData(newCensusModels);
     }
 }
