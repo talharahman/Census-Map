@@ -28,6 +28,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -39,12 +40,11 @@ import java.util.Locale;
 public final class MainFragment extends Fragment
         implements OnMapReadyCallback, OnQuerySubmitListener {
 
-    View rootView;
-    FusedLocationProviderClient flpClient;
-    MapView mapView;
-    GoogleMap map;
-    String zipCode;
-    FragmentInterface listener;
+    private View rootView;
+    private FusedLocationProviderClient flpClient;
+    private GoogleMap map;
+    private String zipCode;
+    private FragmentInterface listener;
 
     public MainFragment() {
     }
@@ -68,7 +68,7 @@ public final class MainFragment extends Fragment
 
         flpClient = LocationServices.getFusedLocationProviderClient((Activity) rootView.getContext());
 
-        mapView = rootView.findViewById(R.id.main_map);
+        MapView mapView = rootView.findViewById(R.id.main_map);
         if (mapView != null) {
             mapView.onCreate(null);
             mapView.onResume();
@@ -103,6 +103,11 @@ public final class MainFragment extends Fragment
                 .build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(NYChall));
 
+        UiSettings uiSettings = map.getUiSettings();
+        uiSettings.setZoomControlsEnabled(true);
+        uiSettings.setCompassEnabled(true);
+        uiSettings.setMyLocationButtonEnabled(true);
+        uiSettings.setAllGesturesEnabled(true);
 
         if (ActivityCompat.checkSelfPermission(rootView.getContext(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED

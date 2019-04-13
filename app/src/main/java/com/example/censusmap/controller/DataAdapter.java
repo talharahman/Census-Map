@@ -2,23 +2,25 @@ package com.example.censusmap.controller;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.example.censusmap.R;
 import com.example.censusmap.model.CensusModel;
-import com.example.censusmap.utilities.Constants;
 import com.example.censusmap.view.DataViewHolder;
 
 import java.util.List;
 
 public class DataAdapter extends RecyclerView.Adapter<DataViewHolder> {
 
-    private List<CensusModel> modelList;
+    private List<CensusModel> dataList;
 
-    public DataAdapter(List<CensusModel> modelList) {
-        this.modelList = modelList;
+    public DataAdapter(List<CensusModel> dataList) {
+        this.dataList = dataList;
+    }
+
+    public List<CensusModel> getDataList() {
+        return dataList;
     }
 
     @NonNull
@@ -32,21 +34,21 @@ public class DataAdapter extends RecyclerView.Adapter<DataViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull DataViewHolder dataViewHolder, int i) {
-        dataViewHolder.onBind(modelList.get(i));
+        dataViewHolder.onBind(dataList.get(i));
     }
 
     @Override
     public int getItemCount() {
-        return modelList.size();
+        return dataList.size();
     }
 
     public void passModel(CensusModel model) {
-        modelList.add(model);
+        dataList.add(model);
         notifyDataSetChanged();
     }
 
     public void setData(List<CensusModel> newCensusList) {
-        this.modelList = newCensusList;
+        this.dataList = newCensusList;
         notifyDataSetChanged();
     }
 }

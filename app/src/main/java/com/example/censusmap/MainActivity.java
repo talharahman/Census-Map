@@ -20,9 +20,9 @@ import com.example.censusmap.fragments.SplashFragment;
 
 public class MainActivity extends AppCompatActivity implements FragmentInterface {
 
-    android.support.v7.widget.Toolbar toolBar;
-    OnQuerySubmitListener barQueryListener;
-    OnQueryTextChangeListener barTextListener;
+    private android.support.v7.widget.Toolbar toolBar;
+    private OnQuerySubmitListener barQueryListener;
+    private OnQueryTextChangeListener barTextListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +59,12 @@ public class MainActivity extends AppCompatActivity implements FragmentInterface
 
     @Override
     public void moveToDetailsScreen(String zipCode) {
+        DataFragment dataFragment = DataFragment.newInstance(zipCode);
+        barTextListener = dataFragment;
+
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.main_activity_container, DataFragment.newInstance(zipCode))
-                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
+                .replace(R.id.main_activity_container, dataFragment)
                 .addToBackStack(null)
                 .commit();
     }
@@ -122,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements FragmentInterface
 
             @Override
             public boolean onQueryTextChange(String filter) {
-                //  barTextListener.onQueryChange(filter);
+                barTextListener.onQueryChange(filter);
                 return false;
             }
         });
