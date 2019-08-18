@@ -26,7 +26,7 @@
              android:layout_marginTop="0dp"
              android:gravity="center"
              android:text="@string/Total_Population"
-             android:background="#3F51B5"/>
+             android:background="#D3D3D3"/>
 
          <TextView
              android:id="@+id/population_total"
@@ -36,7 +36,7 @@
              android:gravity="center"
              android:layout_marginTop="@dimen/data_itemview_small_field"
              android:text="@string/Data_Not_Available"
-             android:background="#E91E63"/>
+             android:background="#2196F3"/>
      </android.support.v7.widget.CardView>
 
      <android.support.v7.widget.CardView
@@ -58,7 +58,7 @@
              android:layout_marginTop="0dp"
              android:gravity="center"
              android:text="@string/Foreign_Born"
-             android:background="#3F51B5"/>
+             android:background="#D3D3D3"/>
 
          <TextView
              android:id="@+id/foreign_born"
@@ -68,7 +68,7 @@
              android:gravity="center"
              android:layout_marginTop="@dimen/data_itemview_small_field"
              android:text="@string/Data_Not_Available"
-             android:background="#E91E63"/>
+             android:background="#2196F3"/>
      </android.support.v7.widget.CardView>
 
      <android.support.v7.widget.CardView
@@ -90,7 +90,7 @@
              android:layout_marginTop="0dp"
              android:gravity="center"
              android:text="@string/Age_Under_18"
-             android:background="#3F51B5"/>
+             android:background="#D3D3D3"/>
 
          <TextView
              android:id="@+id/age_under_18"
@@ -100,7 +100,7 @@
              android:gravity="center"
              android:layout_marginTop="@dimen/data_itemview_small_field"
              android:text="@string/Data_Not_Available"
-             android:background="#E91E63"/>
+             android:background="#2196F3"/>
      </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
@@ -122,7 +122,7 @@
             android:layout_marginTop="0dp"
             android:gravity="center"
             android:text="@string/Age_Over_65"
-            android:background="#3F51B5"/>
+            android:background="#D3D3D3"/>
 
         <TextView
             android:id="@+id/age_over_65"
@@ -132,7 +132,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/data_itemview_small_field"
             android:text="@string/Data_Not_Available"
-            android:background="#E91E63"/>
+            android:background="#2196F3"/>
     </android.support.v7.widget.CardView>
 
      <android.support.v7.widget.CardView
@@ -154,7 +154,7 @@
              android:layout_marginTop="0dp"
              android:gravity="center"
              android:text="@string/Employed_Service"
-             android:background="#3F51B5"/>
+             android:background="#D3D3D3"/>
 
          <TextView
              android:id="@+id/employed_service"
@@ -164,7 +164,7 @@
              android:gravity="center"
              android:layout_marginTop="@dimen/data_itemview_small_field"
              android:text="@string/Data_Not_Available"
-             android:background="#E91E63"/>
+             android:background="#2196F3"/>
      </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
@@ -185,7 +185,7 @@
             android:layout_marginTop="0dp"
             android:gravity="center"
             android:text="@string/Employed_Sales_Office"
-            android:background="#3F51B5"/>
+            android:background="#D3D3D3"/>
 
         <TextView
             android:id="@+id/employed_sales_office"
@@ -195,7 +195,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/data_itemview_small_field"
             android:text="@string/Data_Not_Available"
-            android:background="#E91E63"/>
+            android:background="#2196F3"/>
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
@@ -217,7 +217,7 @@
             android:layout_marginTop="0dp"
             android:gravity="center"
             android:text="@string/Employed_Construction"
-            android:background="#3F51B5"/>
+            android:background="#D3D3D3"/>
 
         <TextView
             android:id="@+id/employed_construction"
@@ -227,7 +227,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/data_itemview_small_field"
             android:text="@string/Data_Not_Available"
-            android:background="#E91E63"/>
+            android:background="#2196F3"/>
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
@@ -249,7 +249,7 @@
             android:layout_marginTop="0dp"
             android:gravity="center"
             android:text="@string/Employed_Public_Administration"
-            android:background="#3F51B5"/>
+            android:background="#D3D3D3"/>
 
         <TextView
             android:id="@+id/public_administration"
@@ -259,7 +259,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/data_itemview_large_field"
             android:text="@string/Data_Not_Available"
-            android:background="#E91E63"/>
+            android:background="#2196F3"/>
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
@@ -281,7 +281,7 @@
             android:layout_marginTop="0dp"
             android:gravity="center"
             android:text="@string/Employed_Healthcare_Education_Social"
-            android:background="#3F51B5"/>
+            android:background="#D3D3D3"/>
 
         <TextView
             android:id="@+id/education_healthcare_social"
@@ -291,7 +291,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/data_itemview_large_field"
             android:text="@string/Data_Not_Available"
-            android:background="#E91E63"/>
+            android:background="#2196F3"/>
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
@@ -313,7 +313,7 @@
             android:layout_marginTop="0dp"
             android:gravity="center"
             android:text="@string/Finance_RealEstate"
-            android:background="#3F51B5"/>
+            android:background="#D3D3D3"/>
 
         <TextView
             android:id="@+id/finance_realEstate"
@@ -323,7 +323,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/data_itemview_large_field"
             android:text="@string/Data_Not_Available"
-            android:background="#E91E63"/>
+            android:background="#2196F3"/>
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
@@ -345,7 +345,7 @@
             android:layout_marginTop="0dp"
             android:gravity="center"
             android:text="@string/Transportation_Utilities"
-            android:background="#3F51B5"/>
+            android:background="#D3D3D3"/>
 
         <TextView
             android:id="@+id/transportation_utilities"
@@ -355,7 +355,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/data_itemview_large_field"
             android:text="@string/Data_Not_Available"
-            android:background="#E91E63"/>
+            android:background="#2196F3"/>
     </android.support.v7.widget.CardView>
 
 </LinearLayout>

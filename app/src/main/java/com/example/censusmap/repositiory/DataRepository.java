@@ -8,8 +8,11 @@ import com.example.censusmap.network.CensusService;
 import com.example.censusmap.network.RetrofitSingleton;
 import com.example.censusmap.utilities.Constants;
 
+import java.util.List;
+
 import io.reactivex.Single;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 final class DataRepository {
@@ -35,22 +38,32 @@ final class DataRepository {
                         Constants.NAME_KEY, Constants.ZIP_KEY +
                         zipCode)
                 .subscribeOn(Schedulers.io())
-                .flatMapIterable(list -> list)
+                .flatMapIterable(new Function<List<List<String>>, Iterable<? extends List<String>>>() {
+                    @Override
+                    public Iterable<? extends List<String>> apply(List<List<String>> list) throws Exception {
+                        return list;
+                    }
+                })
                 .skip(1)
                 .take(1)
                 .firstOrError()
-                .map(lists -> new CensusModel(
-                        lists.get(0),
-                        lists.get(1),
-                        lists.get(2),
-                        lists.get(3),
-                        lists.get(4),
-                        lists.get(5),
-                        lists.get(6),
-                        lists.get(7),
-                        lists.get(8),
-                        lists.get(9),
-                        lists.get(10)))
+                .map(new Function<List<String>, CensusModel>() {
+                    @Override
+                    public CensusModel apply(List<String> lists) throws Exception {
+                        return new CensusModel(
+                                lists.get(0),
+                                lists.get(1),
+                                lists.get(2),
+                                lists.get(3),
+                                lists.get(4),
+                                lists.get(5),
+                                lists.get(6),
+                                lists.get(7),
+                                lists.get(8),
+                                lists.get(9),
+                                lists.get(10));
+                    }
+                })
                 .doOnSuccess(censusModel -> Log.d(Constants.TAG,
                         "onSuccess: " + censusModel.getTotalPopulation() +
                                 " " + censusModel.getForeignBorn() +

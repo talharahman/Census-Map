@@ -1,7 +1,5 @@
 package com.example.censusmap.network;
 
-import com.example.censusmap.utilities.Constants;
-
 import java.util.List;
 
 import io.reactivex.Observable;

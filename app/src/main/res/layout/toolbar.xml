@@ -17,6 +17,7 @@
             android:layout_width="330dp"
             android:layout_height="match_parent"
             android:focusable="true"
+            app:queryHint="Search Addresses"
             android:iconifiedByDefault="false">
 
         </android.support.v7.widget.SearchView>

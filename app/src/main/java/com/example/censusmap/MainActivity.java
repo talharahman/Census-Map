@@ -1,10 +1,7 @@
 package com.example.censusmap;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
@@ -15,7 +12,6 @@ import com.example.censusmap.fragments.DataFragment;
 import com.example.censusmap.fragments.MainFragment;
 import com.example.censusmap.fragments.OnQuerySubmitListener;
 import com.example.censusmap.fragments.FragmentInterface;
-import com.example.censusmap.fragments.SplashFragment;
 
 public class MainActivity extends AppCompatActivity implements FragmentInterface {
 
@@ -27,14 +23,7 @@ public class MainActivity extends AppCompatActivity implements FragmentInterface
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.main_activity_container, SplashFragment.newInstance())
-                .commit();
-    }
 
-    @Override
-    public void moveToMainScreen() {
         MainFragment mainFragment = MainFragment.newInstance();
         barQueryListener = mainFragment;
 
@@ -45,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements FragmentInterface
 
         setToolBar();
     }
+
 
     private void setToolBar() {
         toolBar = findViewById(R.id.main_toolbar);
@@ -65,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements FragmentInterface
                 .commit();
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -77,13 +66,13 @@ public class MainActivity extends AppCompatActivity implements FragmentInterface
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.developer_contact:
-                developerInfo().show();
+              //  developerInfo().show();
                 break;
         }
         return true;
     }
 
-    public AlertDialog developerInfo() {
+/*    public AlertDialog developerInfo() {
         AlertDialog.Builder devInfo = new AlertDialog.Builder(MainActivity.this);
         devInfo.setTitle(R.string.developer_info_text)
                 .setItems(R.array.developer_contact_text, (dialog, which) -> {
@@ -107,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements FragmentInterface
                     }
                 });
         return devInfo.create();
-    }
+    }*/
 
     private void setSearchView() {
         SearchView searchView = findViewById(R.id.map_search_view);

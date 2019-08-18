@@ -17,7 +17,6 @@ import com.example.censusmap.repositiory.DataPresenter;
 import com.example.censusmap.utilities.Constants;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public final class DataFragment extends Fragment {
 

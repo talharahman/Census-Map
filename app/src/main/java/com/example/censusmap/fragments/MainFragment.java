@@ -46,8 +46,7 @@ public final class MainFragment extends Fragment
     private String zipCode;
     private FragmentInterface listener;
 
-    public MainFragment() {
-    }
+    public MainFragment() { }
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -76,7 +75,6 @@ public final class MainFragment extends Fragment
         }
     }
 
-
     private void setText(String zipCode) {
         TextView displayText = rootView.findViewById(R.id.filter_text);
         displayText.setText("Zip Code: " + zipCode);
@@ -89,8 +87,6 @@ public final class MainFragment extends Fragment
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
-        MapsInitializer.initialize(rootView.getContext());
         map = googleMap;
 
         LatLng defaultLoc = new LatLng(40.7128, -74.0060);
@@ -121,7 +117,7 @@ public final class MainFragment extends Fragment
         } else {
             googleMap.setMyLocationEnabled(true);
             flpClient.getLastLocation().addOnSuccessListener(location -> {
-                Geocoder geocoder = new Geocoder(rootView.getContext(), Locale.getDefault());
+                Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
                 List<Address> locationAddresses;
 
                 try {
@@ -143,12 +139,12 @@ public final class MainFragment extends Fragment
     @Override
     public void onQuerySubmit(String s) {
         List<Address> searchAddresses;
-        Geocoder geocoder = new Geocoder(rootView.getContext(), Locale.getDefault());
+        Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
 
         try {
             searchAddresses = geocoder.getFromLocationName(s, 1);
             if (searchAddresses.isEmpty()) {
-                Toast.makeText(rootView.getContext(),
+                Toast.makeText(getContext(),
                         "Invalid location", Toast.LENGTH_SHORT).show();
             }
 

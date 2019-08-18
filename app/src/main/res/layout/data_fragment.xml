@@ -7,7 +7,12 @@
     android:layout_margin="10dp"
     android:orientation="vertical"
     android:background="@null"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:id="@+id/data_fragment"
+
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="80dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/census_recyclerview"
