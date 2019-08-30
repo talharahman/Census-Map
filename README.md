@@ -5,7 +5,5 @@ The Census Map provides an intuitive, user-friendly means to both compare demogr
 
 Future updates will improve any necessary functionality and design specs, more options to filter search results by geography and ability to compare with previous surveys conducted over time.
 
-Track developer's progress on this Trello board: 
-https://trello.com/b/Z4IahSkJ/census-map
 
 
