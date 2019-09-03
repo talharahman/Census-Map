@@ -1,24 +1,26 @@
 package com.example.censusmap.fragments;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.censusmap.R;
 import com.example.censusmap.controller.DataAdapter;
 import com.example.censusmap.model.CensusModel;
 import com.example.censusmap.repositiory.DataPresenter;
 import com.example.censusmap.utilities.Constants;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.ArrayList;
 
-public final class DataFragment extends Fragment {
+public final class DataFragment extends BottomSheetDialogFragment {
 
     public static final String PARAM_KEY = "zip";
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -25,7 +25,7 @@
         app:layout_constraintVertical_bias="0.943"
         tools:context=".MapsActivity" />
 
-    <TextView
+<!--    <TextView
         android:id="@+id/filter_text"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -40,7 +40,7 @@
         app:layout_constraintBottom_toTopOf="@+id/details_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />-->
 
     <Button
         android:id="@+id/details_button"
@@ -50,12 +50,13 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
         android:gravity="center"
-        android:text="@string/details_button"
         android:padding="10dp"
         android:textStyle="bold"
         android:alpha="0.75"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="#E91E63"/>
+        android:background="#2196F3"/>
 
-</android.support.constraint.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

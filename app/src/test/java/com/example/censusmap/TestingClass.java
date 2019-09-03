@@ -1,6 +1,6 @@
 package com.example.censusmap;
 
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 import com.example.censusmap.controller.DataAdapter;
 import com.example.censusmap.fragments.MainFragment;
@@ -17,13 +17,13 @@ import java.util.List;
 public class TestingClass {
 
     private FusedLocationProviderClient fusedLocationProviderClient;
-    private DataAdapter adapter;
     private Fragment fragment;
+
 
     @Before
     public void set_up () {
         List<CensusModel> testModelsList = new ArrayList<>();
-        adapter = new DataAdapter(testModelsList);
+     //   DataAdapter adapter = new DataAdapter(testModelsList);
         fragment = MainFragment.newInstance();
     }
 
@@ -34,7 +34,7 @@ public class TestingClass {
         Assert.assertNotNull(testFragment);
     }
 
-   /* @Test
+    /*@Test
     public void test_adapter_pass_model () {
         CensusModel testModel = new CensusModel("0", "0", "0", "0", "0","0", "0", "0", "0", "0", "0");
         adapter.passModel(testModel);

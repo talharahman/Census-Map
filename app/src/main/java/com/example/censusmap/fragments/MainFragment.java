@@ -1,16 +1,11 @@
 package com.example.censusmap.fragments;
 
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +14,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+
 import com.example.censusmap.R;
 import com.example.censusmap.utilities.Constants;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -26,7 +26,6 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.CameraPosition;
@@ -75,14 +74,17 @@ public final class MainFragment extends Fragment
         }
     }
 
-    private void setText(String zipCode) {
-        TextView displayText = rootView.findViewById(R.id.filter_text);
-        displayText.setText("Zip Code: " + zipCode);
-    }
 
     private void setButton(String zipCode) {
         Button displayButton = rootView.findViewById(R.id.details_button);
-        displayButton.setOnClickListener(v -> listener.moveToDetailsScreen(zipCode));
+        displayButton.setText("Zip Code: " + zipCode);
+        displayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                listener.moveToDetailsScreen(zipCode);
+            }
+        });
     }
 
     @Override
@@ -124,7 +126,7 @@ public final class MainFragment extends Fragment
                     locationAddresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                     Address locationAddress = locationAddresses.get(0);
                     zipCode = locationAddress.getPostalCode();
-                    setText(zipCode);
+                //    setText(zipCode);
                     setButton(zipCode);
 
                     Log.d(Constants.TAG, locationAddress.getPostalCode());
@@ -154,7 +156,6 @@ public final class MainFragment extends Fragment
             map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
             zipCode = searchAddress.getPostalCode();
 
-            setText(zipCode);
             setButton(zipCode);
         } catch (IOException e) {
             e.printStackTrace();
