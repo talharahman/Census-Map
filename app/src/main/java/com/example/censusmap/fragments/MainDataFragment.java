@@ -1,7 +1,6 @@
 package com.example.censusmap.fragments;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -11,14 +10,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.censusmap.R;
+import com.example.censusmap.controller.DataAdapter;
+import com.example.censusmap.model.CensusModel;
+import com.example.censusmap.repositiory.DataPresenter;
 import com.example.censusmap.utilities.Constants;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -26,36 +31,88 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public final class MainFragment extends Fragment
-        implements OnMapReadyCallback, OnQuerySubmitListener {
+public final class MainDataFragment extends Fragment implements OnMapReadyCallback, OnQuerySubmitListener {
 
     private View rootView;
     private FusedLocationProviderClient flpClient;
     private GoogleMap map;
     private String zipCode;
-    private FragmentInterface listener;
+    private DataAdapter adapter;
 
-    public MainFragment() { }
+    public MainDataFragment() {
+    }
 
-    public static MainFragment newInstance() {
-        return new MainFragment();
+    public static MainDataFragment newInstance() {
+        return new MainDataFragment();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_main, container, false);
-
+        initialize();
         return rootView;
+    }
+
+    private void initialize() {
+        View bottomSheet = rootView.findViewById(R.id.bottom_sheet);
+        BottomSheetBehavior sheetBehavior = BottomSheetBehavior.from(bottomSheet);
+
+        sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View view, int newState) {
+                switch (newState) {
+                    case BottomSheetBehavior.STATE_EXPANDED:
+                        fetchCensus(zipCode);
+                        break;
+                    case BottomSheetBehavior.STATE_COLLAPSED:
+                    case BottomSheetBehavior.STATE_HIDDEN:
+                    case BottomSheetBehavior.STATE_DRAGGING:
+                    case BottomSheetBehavior.STATE_HALF_EXPANDED:
+                    case BottomSheetBehavior.STATE_SETTLING:
+                        setDisplayText(zipCode);
+                        break;
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View view, float v) {
+
+            }
+        });
+    }
+
+    private void fetchCensus(String zipCode) {
+        DataPresenter presenter = new DataPresenter(this);
+        presenter.getData(zipCode);
+
+        RecyclerView recyclerView = rootView.findViewById(R.id.census_recyclerview);
+        adapter = new DataAdapter(new ArrayList<>());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(
+                new LinearLayoutManager(rootView.getContext(),
+                        LinearLayoutManager.VERTICAL,
+                        false));
+
+    }
+
+    private void setDisplayText(String zipCode) {
+        TextView displayText = rootView.findViewById(R.id.zip_code_textview);
+        displayText.setText("Zip Code: " + zipCode);
+    }
+
+    public void updateUI(CensusModel model) {
+        adapter.passModel(model);
     }
 
     @Override
@@ -73,19 +130,6 @@ public final class MainFragment extends Fragment
         }
     }
 
-
-    private void setButton(String zipCode) {
-      /*  Button displayButton = rootView.findViewById(R.id.details_button);
-        displayButton.setText("Zip Code: " + zipCode);
-
-        displayButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.moveToDetailsScreen(zipCode);
-            }
-        });*/
-    }
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
@@ -100,14 +144,7 @@ public final class MainFragment extends Fragment
                 .build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(NYChall));
 
-        UiSettings uiSettings = map.getUiSettings();
-        uiSettings.setZoomControlsEnabled(true);
-        uiSettings.setCompassEnabled(true);
-        uiSettings.setMyLocationButtonEnabled(true);
-        uiSettings.setAllGesturesEnabled(true);
-
-        if (ActivityCompat.checkSelfPermission(rootView.getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                ||
+        if (ActivityCompat.checkSelfPermission(rootView.getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
                 ActivityCompat.checkSelfPermission(rootView.getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions((Activity) rootView.getContext(),
                     new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION},
@@ -122,7 +159,7 @@ public final class MainFragment extends Fragment
                     locationAddresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                     Address locationAddress = locationAddresses.get(0);
                     zipCode = locationAddress.getPostalCode();
-                    setButton(zipCode);
+                    setDisplayText(zipCode);
 
                     Log.d(Constants.TAG, locationAddress.getPostalCode());
                 } catch (IOException e) {
@@ -134,12 +171,12 @@ public final class MainFragment extends Fragment
     }
 
     @Override
-    public void onQuerySubmit(String s) {
+    public void onQuerySubmit(String query) {
         List<Address> searchAddresses;
         Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
 
         try {
-            searchAddresses = geocoder.getFromLocationName(s, 1);
+            searchAddresses = geocoder.getFromLocationName(query, 1);
             if (searchAddresses.isEmpty()) {
                 Toast.makeText(getContext(),
                         "Invalid location", Toast.LENGTH_SHORT).show();
@@ -147,30 +184,14 @@ public final class MainFragment extends Fragment
 
             Address searchAddress = searchAddresses.get(0);
             LatLng latLng = new LatLng(searchAddress.getLatitude(), searchAddress.getLongitude());
-            map.addMarker(new MarkerOptions().position(latLng).title(s));
+            map.addMarker(new MarkerOptions().position(latLng).title(query));
             map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
             zipCode = searchAddress.getPostalCode();
+            setDisplayText(zipCode);
 
-            setButton(zipCode);
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof FragmentInterface) {
-            listener = (FragmentInterface) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement interface");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        listener = null;
     }
 }

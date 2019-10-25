@@ -36,7 +36,7 @@
              android:gravity="center"
              android:layout_marginTop="@dimen/data_itemview_small_field"
              android:text="@string/Data_Not_Available"
-             android:background="#2196F3"/>
+             android:background="#D3D3D3"/>
      </androidx.cardview.widget.CardView>
 
      <androidx.cardview.widget.CardView
@@ -68,7 +68,7 @@
              android:gravity="center"
              android:layout_marginTop="@dimen/data_itemview_small_field"
              android:text="@string/Data_Not_Available"
-             android:background="#2196F3"/>
+             android:background="#D3D3D3"/>
      </androidx.cardview.widget.CardView>
 
      <androidx.cardview.widget.CardView
@@ -100,7 +100,7 @@
              android:gravity="center"
              android:layout_marginTop="@dimen/data_itemview_small_field"
              android:text="@string/Data_Not_Available"
-             android:background="#2196F3"/>
+             android:background="#D3D3D3"/>
      </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -132,7 +132,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/data_itemview_small_field"
             android:text="@string/Data_Not_Available"
-            android:background="#2196F3"/>
+            android:background="#D3D3D3"/>
     </androidx.cardview.widget.CardView>
 
      <androidx.cardview.widget.CardView
@@ -164,7 +164,7 @@
              android:gravity="center"
              android:layout_marginTop="@dimen/data_itemview_small_field"
              android:text="@string/Data_Not_Available"
-             android:background="#2196F3"/>
+             android:background="#D3D3D3"/>
      </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -195,7 +195,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/data_itemview_small_field"
             android:text="@string/Data_Not_Available"
-            android:background="#2196F3"/>
+            android:background="#D3D3D3"/>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -227,7 +227,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/data_itemview_small_field"
             android:text="@string/Data_Not_Available"
-            android:background="#2196F3"/>
+            android:background="#D3D3D3"/>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -259,7 +259,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/data_itemview_large_field"
             android:text="@string/Data_Not_Available"
-            android:background="#2196F3"/>
+            android:background="#D3D3D3"/>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -291,7 +291,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/data_itemview_large_field"
             android:text="@string/Data_Not_Available"
-            android:background="#2196F3"/>
+            android:background="#D3D3D3"/>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -323,7 +323,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/data_itemview_large_field"
             android:text="@string/Data_Not_Available"
-            android:background="#2196F3"/>
+            android:background="#D3D3D3"/>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -355,7 +355,7 @@
             android:gravity="center"
             android:layout_marginTop="@dimen/data_itemview_large_field"
             android:text="@string/Data_Not_Available"
-            android:background="#2196F3"/>
+            android:background="#D3D3D3"/>
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.util.Log;
 
 import com.example.censusmap.fragments.DataFragment;
+import com.example.censusmap.fragments.MainDataFragment;
 import com.example.censusmap.model.CensusModel;
 import com.example.censusmap.utilities.Constants;
 
@@ -12,11 +13,17 @@ import io.reactivex.functions.Consumer;
 
 public class DataPresenter {
 
-    private DataFragment fragment;
+   /* private DataFragment fragment;
 
     public DataPresenter(DataFragment fragment) {
         this.fragment = fragment;
-   }
+   }*/
+
+    private MainDataFragment fragment;
+
+    public DataPresenter(MainDataFragment fragment) {
+        this.fragment = fragment;
+    }
 
     @SuppressLint("CheckResult")
     public void getData(String zipCode){

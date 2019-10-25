@@ -60,18 +60,18 @@ public final class DataFragment extends BottomSheetDialogFragment {
     }
 
     private void setData() {
-        DataPresenter presenter = new DataPresenter(this);
-        presenter.getData(zipCode);
+      //  DataPresenter presenter = new DataPresenter(this);
+      //  presenter.getData(zipCode);
     }
 
     private void initialize() {
-        RecyclerView recyclerView = rootView.findViewById(R.id.census_recyclerview);
+ /*       RecyclerView recyclerView = rootView.findViewById(R.id.census_recyclerview);
         adapter = new DataAdapter(new ArrayList<>());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(
                 new LinearLayoutManager(rootView.getContext(),
                         LinearLayoutManager.VERTICAL,
-                        false));
+                        false));*/
     }
 
     public void updateUI(CensusModel model){

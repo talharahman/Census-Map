@@ -11,6 +11,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.censusmap.fragments.DataFragment;
+import com.example.censusmap.fragments.MainDataFragment;
 import com.example.censusmap.fragments.MainFragment;
 import com.example.censusmap.fragments.OnQuerySubmitListener;
 import com.example.censusmap.fragments.FragmentInterface;
@@ -24,8 +25,8 @@ public class MainActivity extends AppCompatActivity implements FragmentInterface
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        MainFragment mainFragment = MainFragment.newInstance();
+    //    MainFragment mainFragment = MainFragment.newInstance();
+        MainDataFragment mainFragment = MainDataFragment.newInstance();
         barQueryListener = mainFragment;
 
         getSupportFragmentManager()
