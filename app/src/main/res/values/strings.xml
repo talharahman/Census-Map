@@ -5,9 +5,6 @@
     <!--UI values -->
     <string name="details_button">GET CENSUS DATA</string>
 
-    <!--Google Maps API Key -->
-    <string name="google_map_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBCdCe1dwN9MoO0iUOclw2FbjzM1Qob6zM</string>
-
     <!--Developer's Info Values -->
     <string name="menu_info_text">Details</string>
     <string name="e_mail">talharahman@pursuit.org</string>
