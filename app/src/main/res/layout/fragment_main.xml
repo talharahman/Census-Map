@@ -6,28 +6,10 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#fff"
+        android:background="#F0EFED"
         android:orientation="vertical">
-
-<!--        <Button
-            android:id="@+id/details_button"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"
-            android:alpha="0.75"
-            android:background="#2196F3"
-            android:gravity="center"
-            android:padding="10dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />-->
 
         <com.google.android.gms.maps.MapView
             android:id="@+id/main_map"
@@ -40,14 +22,13 @@
             app:layout_constraintVertical_bias="0.943"
             tools:context=".MapsActivity" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/bottom_sheet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#2196F3"
+        android:background="#E4E7EF"
         app:behavior_hideable="true"
         app:behavior_peekHeight="55dp"
         app:layout_behavior="@string/bottom_sheet_behavior">

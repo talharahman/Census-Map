@@ -1,4 +1,4 @@
-package com.example.censusmap.fragments;
+package com.example.censusmap.view;
 
 import android.app.Activity;
 import android.content.pm.PackageManager;
@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,9 +20,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.censusmap.R;
-import com.example.censusmap.controller.DataAdapter;
+import com.example.censusmap.recyclerview.DataAdapter;
 import com.example.censusmap.model.CensusModel;
 import com.example.censusmap.repositiory.DataPresenter;
+import com.example.censusmap.repositiory.OnQuerySubmitListener;
 import com.example.censusmap.utilities.Constants;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -49,8 +49,7 @@ public final class MainDataFragment extends Fragment implements OnMapReadyCallba
     private String zipCode;
     private DataAdapter adapter;
 
-    public MainDataFragment() {
-    }
+    public MainDataFragment() { }
 
     public static MainDataFragment newInstance() {
         return new MainDataFragment();
@@ -60,11 +59,11 @@ public final class MainDataFragment extends Fragment implements OnMapReadyCallba
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        initialize();
+        setBottomSheet();
         return rootView;
     }
 
-    private void initialize() {
+    private void setBottomSheet() {
         View bottomSheet = rootView.findViewById(R.id.bottom_sheet);
         BottomSheetBehavior sheetBehavior = BottomSheetBehavior.from(bottomSheet);
 
@@ -86,9 +85,7 @@ public final class MainDataFragment extends Fragment implements OnMapReadyCallba
             }
 
             @Override
-            public void onSlide(@NonNull View view, float v) {
-
-            }
+            public void onSlide(@NonNull View view, float v) { }
         });
     }
 
@@ -96,6 +93,10 @@ public final class MainDataFragment extends Fragment implements OnMapReadyCallba
         DataPresenter presenter = new DataPresenter(this);
         presenter.getData(zipCode);
 
+        setView();
+    }
+
+    private void setView() {
         RecyclerView recyclerView = rootView.findViewById(R.id.census_recyclerview);
         adapter = new DataAdapter(new ArrayList<>());
         recyclerView.setAdapter(adapter);
@@ -103,7 +104,6 @@ public final class MainDataFragment extends Fragment implements OnMapReadyCallba
                 new LinearLayoutManager(rootView.getContext(),
                         LinearLayoutManager.VERTICAL,
                         false));
-
     }
 
     private void setDisplayText(String zipCode) {
@@ -130,6 +130,8 @@ public final class MainDataFragment extends Fragment implements OnMapReadyCallba
         }
     }
 
+
+    // TODO: Can this be moved off the UI ?
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;

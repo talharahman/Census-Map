@@ -5,19 +5,18 @@ import android.util.Log;
 
 import com.example.censusmap.model.CensusModel;
 import com.example.censusmap.network.CensusService;
-import com.example.censusmap.network.RetrofitSingleton;
+import com.example.censusmap.network.CensusRetrofit;
 import com.example.censusmap.utilities.Constants;
 
 import java.util.List;
 
 import io.reactivex.Single;
-import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 final class DataRepository {
 
-    private final CensusService service = RetrofitSingleton
+    private final CensusService service = CensusRetrofit
             .getInstance()
             .create(CensusService.class);
 
@@ -38,12 +37,7 @@ final class DataRepository {
                         Constants.NAME_KEY, Constants.ZIP_KEY +
                         zipCode)
                 .subscribeOn(Schedulers.io())
-                .flatMapIterable(new Function<List<List<String>>, Iterable<? extends List<String>>>() {
-                    @Override
-                    public Iterable<? extends List<String>> apply(List<List<String>> list) throws Exception {
-                        return list;
-                    }
-                })
+                .flatMapIterable(list -> list)
                 .skip(1)
                 .take(1)
                 .firstOrError()

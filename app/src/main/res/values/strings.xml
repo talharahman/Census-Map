@@ -9,14 +9,9 @@
     <string name="google_map_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBCdCe1dwN9MoO0iUOclw2FbjzM1Qob6zM</string>
 
     <!--Developer's Info Values -->
-    <string name="developer_info_text">Developer Info</string>
+    <string name="menu_info_text">Details</string>
     <string name="e_mail">talharahman@pursuit.org</string>
 
-    <string-array name="developer_contact_text">
-        <item>E-mail</item>
-        <item>Github</item>
-        <item>LinkedIn</item>
-    </string-array>
 
     <!--RecyclerView Data Items-->
     <string name="Data_Not_Available">Data Not Available</string>

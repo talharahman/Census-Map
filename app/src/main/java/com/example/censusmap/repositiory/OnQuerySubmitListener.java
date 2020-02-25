@@ -1,4 +1,4 @@
-package com.example.censusmap.fragments;
+package com.example.censusmap.repositiory;
 
 public interface OnQuerySubmitListener {
 

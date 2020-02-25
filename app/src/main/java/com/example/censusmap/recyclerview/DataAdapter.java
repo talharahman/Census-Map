@@ -1,4 +1,4 @@
-package com.example.censusmap.controller;
+package com.example.censusmap.recyclerview;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 
 import com.example.censusmap.R;
 import com.example.censusmap.model.CensusModel;
-import com.example.censusmap.view.DataViewHolder;
 
 import java.util.List;
 
